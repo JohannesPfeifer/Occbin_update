@@ -1,8 +1,8 @@
-function [p,q]=get_pq(dr_);
+function [p,q]=get_pq(dr_,M_);
 
 nvars = size(dr_.ghx,1);
 nshocks = size(dr_.ghu,2);
-statevar_pos = (dr_.nstatic +1):(nvars-dr_.nfwrd);
+statevar_pos = (M_.nstatic +1):(nvars-M_.nfwrd);
 
 p = zeros(nvars);
 % interlace matrix

@@ -1,4 +1,4 @@
-function [zdata oobase_ Mbase_ ] = ...
+function [zdata_, oobase_, Mbase_ ] = ...
     solve_no_constraint(modnam,...
     shockssequence,irfshock,nperiods)
 
@@ -30,12 +30,13 @@ end
 [hm1,h,hl1,Jbarmat] = get_deriv(Mbase_,ys_);
 cof = [hm1,h,hl1];
 
-[decrulea,decruleb]=get_pq(oobase_.dr);
+[decrulea,decruleb]=get_pq(oobase_.dr,Mbase_);
 endog_ = M_.endo_names;
 exog_ =  M_.exo_names;
 
 
 
+nvars = numel(Mbase_.endo_nbr);
 
 nshocks = size(shockssequence,1);
 init = zeros(nvars,1);

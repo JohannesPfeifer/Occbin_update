@@ -1,4 +1,4 @@
-% solve_one_constraint [zdatalinear zdatapiecewise zdatass oo base M base] = solve one constraint(modnam, modnamstar, constraint, constraint relax, shockssequence, irfshock, nperiods, maxiter, init);
+% solve_one_constraint [zdatalinear zdatapiecewise zdatass oo_base M_base] = ...solve one constraint(modnam, modnamstar, constraint, constraint relax, shockssequence, irfshock, nperiods, maxiter, init);
 % 
 % Inputs: 
 % modnam: name of .mod file for the reference regime (excludes the .mod extension).
@@ -44,6 +44,7 @@ for i_indx_ = 1:Mbase_.param_nbr
   eval([Mbase_.param_names(i_indx_,:),'= M_.params(i_indx_);']);
 end
 
+% Create steady state values of the variables if needed for processing the constraint
 for i=1:Mbase_.endo_nbr
    eval([deblank(Mbase_.endo_names(i,:)) '_ss = oobase_.dr.ys(i); ']);
 end
@@ -85,7 +86,7 @@ cof_ = [hm1_,h_,hl1_];
 cofstar_ = [hm1_,h_,hl1_];
 Dstartbarmat_ = resid_;
 
-[decrulea_,decruleb_]=get_pq(oobase_.dr);
+[decrulea_,decruleb_]=get_pq(oobase_.dr,Mbase_);
 endog_ = M_.endo_names;
 exog_ =  M_.exo_names;
 

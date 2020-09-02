@@ -138,7 +138,7 @@ Dbarmat11_ = resid_;
 
 
 
-[decrulea,decruleb]=get_pq(oo00_.dr);
+[decrulea,decruleb]=get_pq(oo00_.dr,M00_);
 endog_ = M00_.endo_names;
 exog_ =  M00_.exo_names;
 
