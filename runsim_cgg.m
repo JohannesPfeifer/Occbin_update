@@ -50,9 +50,9 @@ irfshock =char('eps_g');      % label for innovation for IRFs
                           
 % unpack the IRFs                          
 for i=1:Mbase_.endo_nbr
-  eval([deblank(Mbase_.endo_names(i,:)),'_linear=zdatalinear(:,i);']);
-  eval([deblank(Mbase_.endo_names(i,:)),'_piecewise=zdatapiecewise(:,i);']);
-  eval([deblank(Mbase_.endo_names(i,:)),'_ss=zdatass(i);']);
+  eval([Mbase_.endo_names{i,:},'_linear=zdatalinear(:,i);']);
+  eval([Mbase_.endo_names{i,:},'_piecewise=zdatapiecewise(:,i);']);
+  eval([Mbase_.endo_names{i,:},'_ss=zdatass(i);']);
 end
 
 % Construct interest rate in levels

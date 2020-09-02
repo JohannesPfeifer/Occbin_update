@@ -41,12 +41,12 @@ Mbase_ = M_;
 % import locally the values of parameters assigned in the reference .mod
 % file
 for i_indx_ = 1:Mbase_.param_nbr
-  eval([Mbase_.param_names(i_indx_,:),'= M_.params(i_indx_);']);
+  eval([Mbase_.param_names{i_indx_,:},'= M_.params(i_indx_);']);
 end
 
 % Create steady state values of the variables if needed for processing the constraint
 for i=1:Mbase_.endo_nbr
-   eval([deblank(Mbase_.endo_names(i,:)) '_ss = oobase_.dr.ys(i); ']);
+   eval([Mbase_.endo_names{i,:} '_ss = oobase_.dr.ys(i); ']);
 end
 
 
@@ -144,7 +144,7 @@ for ishock_ = 1:nshocks_
             endog_,exog_,irfshock_,shockssequence_(ishock_,:),init_);
         
         for i_indx_=1:nwishes_
-            eval([deblank(wishlist_(i_indx_,:)),'_difference=zdatalinear_(:,i_indx_);']);
+            eval([wishlist_{i_indx_,:},'_difference=zdatalinear_(:,i_indx_);']);
         end
         
         
