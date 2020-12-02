@@ -53,8 +53,6 @@ for i_indx_ = 1:M00_.param_nbr
   eval([M00_.param_names(i_indx_,:),'= M00_.params(i_indx_);']);
 end
 
-
-
 eval(['dynare ',modnam_10_,' noclearall'])
 oo10_ = oo_;
 M10_ = M_;
@@ -83,7 +81,6 @@ if ~strcmp(M00_.param_names,M10_.param_names)
     warning(['The parameter list does not match across the files ',modnam_00_,' and ',modnam_10_])
 end
 
-
 if ~strcmp(M00_.endo_names,M01_.endo_names)
     error([modnam_00,' and ',modnam_01_,' need to have exactly the same endogenous variables and they need to be declared in the same order'])
 end
@@ -95,7 +92,6 @@ end
 if ~strcmp(M00_.param_names,M01_.param_names)
     warning(['The parameter list does not match across the files ',modnam_00_,' and ',modnam_01_])
 end
-
 
 if ~strcmp(M00_.endo_names,M11_.endo_names)
     error([modnam_00_,' and ',modnam_11_,' need to have exactly the same endogenous variables and they need to be declared in the same order'])
@@ -109,9 +105,9 @@ if ~strcmp(M00_.param_names,M11_.param_names)
     warning(['The parameter list does not match across the files ',modnam_00_,' and ',modnam_11_])
 end
 
-
-
-
+if ~isequal(M00_.lead_lag_incidence,M01_.lead_lag_incidence) || ~isequal(M00_.lead_lag_incidence,M10_.lead_lag_incidence) || ~isequal(M00_.lead_lag_incidence,M11_.lead_lag_incidence)
+    error('The lead_lag_incidence-matrix differs across files. In Dynare 4.6, you may need to add a dummy equation tag.')    
+end
 
 nvars_ = M00_.endo_nbr;
 zdatass_ = oo00_.dr.ys;

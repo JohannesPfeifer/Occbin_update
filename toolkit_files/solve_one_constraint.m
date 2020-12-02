@@ -69,6 +69,10 @@ if ~strcmp(Mbase_.param_names,Mstar_.param_names)
     warning('The parameter list does not match across .mod files')
 end
 
+if ~isequal(Mbase_.lead_lag_incidence,Mstar_.lead_lag_incidence)
+    error('The lead_lag_incidence-matrix differs across files. In Dynare 4.6, you may need to add a dummy equation tag.')    
+end
+
 % ensure that the two models have the same parameters
 % use the parameters for the base model.
 Mstar_.params = Mbase_.params;
