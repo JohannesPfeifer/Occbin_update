@@ -24,7 +24,7 @@
 % 6/17/2013 -- Luca replaced external .m file setss.m
 
 
-function [zdatalinear_ zdatapiecewise_ zdatass_ oobase_ Mbase_  ] = ...
+function [zdatalinear_, zdatapiecewise_, zdatass_, oobase_, Mbase_  ] = ...
     solve_one_constraint(modnam_,modnamstar_,...
     constraint_, constraint_relax_,...
     shockssequence_,irfshock_,nperiods_,maxiter_,init_)
@@ -52,7 +52,6 @@ end
 
 % parse the .mod file for the alternative regime
 eval(['dynare ',modnamstar_,' noclearall nolog '])
-oostar_ = oo_;
 Mstar_ = M_;
 
 
@@ -100,8 +99,6 @@ exog_ =  M_.exo_names;
 constraint_difference_ = process_constraint(constraint_,'_difference',Mbase_.endo_names,0);
 
 constraint_relax_difference_ = process_constraint(constraint_relax_,'_difference',Mbase_.endo_names,0);
-
-
 
 nshocks_ = size(shockssequence_,1);
 
@@ -151,12 +148,8 @@ for ishock_ = 1:nshocks_
             eval([wishlist_{i_indx_,:},'_difference=zdatalinear_(:,i_indx_);']);
         end
         
-        
-        
         newviolvecbool_ = eval(constraint_difference_);
         relaxconstraint_ = eval(constraint_relax_difference_);
-        
-        
         
         % check if changes to the hypothesis of the duration for each
         % regime
@@ -167,9 +160,7 @@ for ishock_ = 1:nshocks_
         end
         
         
-        violvecbool_ = (violvecbool_|newviolvecbool_)-(relaxconstraint_ & violvecbool_);
-        
-        
+        violvecbool_ = (violvecbool_|newviolvecbool_)-(relaxconstraint_ & violvecbool_);        
     end
     
     init_ = zdatalinear_(1,:);

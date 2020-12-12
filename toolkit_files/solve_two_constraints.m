@@ -37,8 +37,6 @@ function [ zdatalinear_ zdatapiecewise_ zdatass_ oo00_  M00_ ] = ...
 
 global M_ oo_
 
-
-
 % solve model
 eval(['dynare ',modnam_00_,' noclearall nolog'])
 oo00_ = oo_;
@@ -291,8 +289,6 @@ for ishock_ = 1:nshocks
     
 end
 
-
 zdatapiecewise_(ishock_+1:end,:)=zdatalinear_(2:nperiods_-ishock_+1,:);
 
 zdatalinear_ = mkdata(nperiods_,decrulea,decruleb,endog_,exog_,wishlist_,irfshock_,shockssequence_,init_orig_);
-

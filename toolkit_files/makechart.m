@@ -1,7 +1,5 @@
 function makechart(titlelist,legendlist,figlabel,ylabels,zdata1,zdata2,zdata3)
 
-
-
 figure
 
 titlelist = char(strrep(cellstr(titlelist),'_','.'));
@@ -14,7 +12,7 @@ if nargin==5
 elseif nargin == 6
     zdata3 =nan*zdata1;
     ndsets=2;
-elseif ((nargin>8) | (nargin <=4))
+elseif ((nargin>8) || (nargin <=4))
     error ('makechart takes 5 to 6 arguments')
 end
 
@@ -28,16 +26,16 @@ if nvars==1
 elseif nvars==2
     nrows =2;
     ncols = 1;
-elseif (nvars == 3 | nvars ==4)
+elseif (nvars == 3 || nvars ==4)
     nrows = 2;
     ncols =2;
-elseif (nvars==5 |nvars ==6)
+elseif (nvars==5 || nvars ==6)
     nrows = 3;
     ncols = 2;
-elseif (nvars==7 | nvars==8)
+elseif (nvars==7 || nvars==8)
     nrows = 4;
     ncols = 2;
-elseif (nvars==9 | nvars==10)
+elseif (nvars==9 || nvars==10)
     nrows = 5;
     ncols = 2;
 else 
@@ -59,7 +57,6 @@ for i = 1:nvars
     end
     
     axis([x0 x1 y0 y1])
-    set(h1);
 
     if i==1 && isempty(legendlist)==0
         legend(legendlist)
