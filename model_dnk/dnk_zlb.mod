@@ -14,5 +14,8 @@ warning off;
 
 model;
 @#include "DNK_model_common.inc"
+[static]
+r = 0;
+[dynamic]
 r = 0;
 end ;
