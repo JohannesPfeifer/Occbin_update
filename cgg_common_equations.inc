@@ -1,5 +1,5 @@
 [name='IS curve (Equation 2.1 in CGG JEL 1999 paper)']
-y = y(+1) - PHI*(r + p(+1)) + g ;
+y = y(+1) - PHI*(r - p(+1)) + g ;
 
 [name='Phillips curve (Equation 2.2 in CGG JEL 1999 paper)']
 p = BETA*p(+1) + LAMBDA*y  ;
